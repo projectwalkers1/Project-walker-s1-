@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Walker S1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background:#0b0b0b;
+    color:#e0e0e0;
+}
+
+.banner {
+    background:url('https://i.imgur.com/Q3TziFM.jpeg') center/cover;
+    height:220px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-bottom:3px solid #2aff00;
+}
+
+.banner h1 {
+    font-family:'Creepster', cursive;
+    font-size:40px;
+    color:#2aff00;
+    text-shadow:0 0 20px #2aff00;
+}
+
+.container {padding:30px 20px; position:relative;}
+
+.about-title {
+    text-align:center;
+    font-size:28px;
+    margin-bottom:20px;
+    font-family:'Creepster', cursive;
+    color:#2aff00;
+}
+
+.about-text {
+    text-align:center;
+    line-height:1.8;
+    max-width:800px;
+    margin:auto;
+}
+
+.about-text span {
+    color:#2aff00;
+    font-weight:bold;
+}
+
+.zombie {
+    position:absolute;
+    width:80px;
+    opacity:0.8;
+    animation:float 4s infinite ease-in-out;
+}
+
+.z1 { top:20px; left:10px; }
+.z2 { top:120px; right:10px; }
+.z3 { bottom:50px; left:30px; }
+
+@keyframes float {
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+.image-section {
+    margin-top:40px;
+    text-align:center;
+}
+
+.image-section img {
+    width:90%;
+    max-width:600px;
+    border:3px solid #2aff00;
+    border-radius:10px;
+    box-shadow:0 0 20px #2aff00;
+}
+
+.character-section {
+    margin-top:50px;
+    text-align:center;
+}
+
+.char-title {
+    font-family:'Creepster', cursive;
+    color:#2aff00;
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.viewer {
+    background:#111;
+    border:2px solid #2aff00;
+    border-radius:10px;
+    padding:15px;
+    max-width:350px;
+    margin:auto;
+    margin-bottom:30px;
+}
+
+.viewer img {
+    width:100%;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+.story-box {
+    margin-top:10px;
+    font-size:13px;
+    opacity:0.85;
+    text-align:left;
+    white-space:pre-line;
+}
+
+.char-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(80px,1fr));
+    gap:10px;
+    max-width:500px;
+    margin:auto;
+}
+
+.char-grid img {
+    width:100%;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.char-grid img:hover {
+    transform:scale(1.1);
+}
+
+.footer {
+    margin-top:30px;
+    text-align:center;
+    padding:15px;
+    font-size:12px;
+    opacity:0.6;
+}
+
+.music-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#2aff00;
+    color:#000;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.music-bar{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:60px;
+
+    background:rgba(255,255,255,0.08); /* transparan tipis */
+    backdrop-filter:blur(50px);
+    -webkit-backdrop-filter:blur(50px);
+
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    z-index:999;
+}
+
+.music-bar button{
+    background:none;
+    border:none;
+    font-size:20px;
+    color:#fff;
+    cursor:pointer;
+    margin-right:10px;
+}
+
+.music-bar input[type=range]{
+    flex:1;
+    height:4px;
+    appearance:none;
+    background:#888;
+    border-radius:10px;
+    outline:none;
+}
+
+.music-bar input[type=range]::-webkit-slider-thumb{
+    appearance:none;
+    width:10px;
+    height:10px;
+    background:#fff;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.music-icons{
+    margin-left:10px;
+    color:#fff;
+    font-size:20px;
+}
+
+.music-text{
+    font-family:'Creepster', cursive;
+    color:#2aff00;
+    text-shadow:0 0 10px #2aff00, 0 0 20px #2aff00;
+    font-size:18px;
+    margin-right:10px;
+}
+
+button{
+    background:#2aff00;
+    color:#000;
+    border:none;
+    padding:8px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-family:'Creepster', cursive;
+    font-size:16px;
+    text-shadow:0 0 10px #2aff00, 0 0 20px #2aff00;
+    box-shadow:0 0 10px #2aff00;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#1ed600;
+    box-shadow:0 0 20px #2aff00, 0 0 40px #2aff00;
+    transform:scale(1.05);
+}
+
+.opening-text{
+    font-family:'Creepster', cursive;
+    color:#2aff00;
+    text-align:center;
+    margin-bottom:15px;
+    font-size:28px;
+    text-shadow:0 0 10px #2aff00, 0 0 20px #2aff00;
+}
+
+.opening-text{
+    font-family:'Creepster', cursive;
+    color:#2aff00;
+    text-align:center;
+    margin-bottom:15px;
+    font-size:28px;
+    text-shadow:0 0 10px #2aff00, 0 0 20px #2aff00;
+}
+
+.pov-video{
+    border:3px solid #2aff00;
+    border-radius:10px;
+    box-shadow:0 0 20px #2aff00;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" loop>
+<source src="https://files.catbox.moe/mfynj2.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🔊 Music</button>
+
+<div id="loadingScreen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:9999;color:#2aff00;font-family:'Creepster';">
+<h1>OUTBREAK LOADING...</h1>
+<img src="https://i.imgur.com/POT7guK.png" style="width:100px;margin-top:20px;">
+</div>
+
+<div class="banner">
+<h1>PROJECT WALKER S1</h1>
+</div>
+
+<div class="container">
+
+<img class="zombie z1" src="https://gamingbarn.net/images/download_page/mg/description/renders/ak47.png">
+<img class="zombie z2" src="https://minecraft.wiki/images/Zombie_Head_%28S%29_JE2.png?af5c1">
+<img class="zombie z3" src="https://i.imgur.com/POT7guK.png">
+
+<div class="about-title">ABOUT</div>
+<div class="about-text"><span>"Project Walker S1"</span> adalah sebuah series roleplay Minecraft bertema 
+<span>Zombie Apocalypse</span> yang menceritakan dunia yang telah hancur akibat wabah misterius.
+<br><br>
+Manusia yang tersisa harus bertahan hidup dari serangan zombie, kekurangan sumber daya,
+dan konflik antar survivor.
+<br><br>
+Series ini menyampaikan pesan tentang 
+<span>keberanian, survival, dan harapan.</span></div>
+
+<div class="about-title" style="margin-top:40px;">ORIGIN OF OUTBREAK</div>
+<div class="about-text">Wabah bermula dari eksperimen <span>Dr. Takumi Saiko</span> yang mencoba menciptakan virus penyembuh.
+Namun virus bermutasi dan menghidupkan kembali orang mati.
+Pasien pertama bangkit kembali... lalu menyebar.
+<br><br>
+<span>Dunia pun runtuh.</span></div>
+
+<div class="image-section">
+<img src="https://i.imgur.com/OClBCZI.png">
+</div>
+
+</div>
+
+<div class="character-section">
+<h2 class="char-title">CHARACTER</h2>
+
+<div class="viewer">
+<img id="preview" src="https://i.imgur.com/Q3TziFM.jpeg">
+<h3 id="nama">???</h3>
+<p>Gender: <span id="gender">???</span></p>
+<p>Umur: <span id="umur">???</span></p>
+<p id="bio">Klik karakter di bawah</p>
+<div id="story" class="story-box"></div>
+</div>
+
+<div style="text-align:center;margin-bottom:20px;">
+<button onclick="resetChar()">Reset Character</button>
+</div>
+
+<div class="char-grid">
+
+<!-- FULL 16 KARAKTER LU (SUDAH BALIK SEMUA) -->
+<img src="https://i.imgur.com/O6dslOy.png"
+onclick="showChar(this.src,'Skyzen Nakamura','Laki-laki','18','Leader dingin','Skyzen Nakamura lahir dari dunia yang tidak bersih. Ayahnya bukan orang biasa—dia adalah bagian dari organisasi mafia besar Jepang. Sosok yang ditakuti, dihormati… sekaligus dibenci.Ibunya? Sudah lama pergi. Meninggal saat Skyzen masih kecil. Bahkan wajahnya pun mulai samar di ingatan. Yang tersisa hanya satu hal:perasaan kehilangan yang nggak pernah sembuh. Sejak itu, Skyzen dibesarkan bukan dengan kasih sayang… tapi dengan kerasnya dunia bawah..')">
+
+<img src="https://i.imgur.com/4MMtIiB.png"
+onclick="showChar(this.src,'Evan Alexander','Laki-laki','17','Tangan kanan','Evan Alexander adalah anak  dari Foster Alexander dan fiona helena sekaligus keponakan ryuji Nakamura. Evan hanyalah seorang anak biasa yang tinggal di rumah yang ia beli ketika ia masih bekerja, Evan dulu saat bersekolah memiliki sahabat bernama Skyzen Nakamura. Ayah nya di tangkap karena di duga ikut distribusi ilegal karena itu dia memberikan kompas kompas ini agar kamu tidak kehilangan arah seperti ayah setelah ibu nya meninggal Evan kehilangan harapan dan hampir saja bunuh diri tapi tidak jadi karena mengingat perasaan ibunya dan pesan ayahnya')">
+
+<img src="https://i.imgur.com/W1klNCN.png"
+onclick="showChar(this.src,'Yamazaki Reza','Laki-laki','20','Cepat & berani','Yamazaki Reza, anak sulung Don Yamazaki Roza, pewaris mafia Yamazaki-Roza di distrik neon Tokyo.\nDididik dingin & kejam sejak kecil. Ibunya tewas saat Reza berusia 10 tahun. Ia sangat protektif terhadap adiknya Kiana Yamazaki (16), satu-satunya yang boleh lihat sisi baiknya.\nDi usia 17, dalam Night of Broken Neon, Reza memimpin balasan brutal, membantai puluhan musuh, dan dijuluki Pixel Reaper.\nKini underboss cool.')">
+
+<img src="https://i.imgur.com/NH9ou09.png"
+onclick="showChar(this.src,'Jendral Takeru','Laki-laki','25','Ahli senjata','Sejak usia 4 tahun, Jenderal Takeru dididik sangat keras oleh ayahnya, mantan komandan pasukan khusus. Lari dengan beban berat, berlatih pedang hingga berdarah, dan ditinggalkan di hutan berhari-hari. Ayahnya berkata, “Kau adalah pedang yang berjalan.” Ibunya mengajarkan teknik pedang tanpa ampun. Hidupnya hanya siksaan. Di usia 16 tahun, zombie apocalypse meledak. Ayah dan ibunya mati dimakan zombie saat melindunginya. Takeru mengambil senjata api milik ayahnya, memakai topeng tengkorak, dan bersumpah menjadi kematian. Kini ia adalah prajurit bayangan dingin yang membantai zombie dan manusia jahat sendirian. Tagline:“Aku lahir dari siksaan. Aku hidup untuk membalasnya pada dunia yang lebih kejam.”')">
+
+<img src="https://i.imgur.com/tJgVocq.png"
+onclick="showChar(this.src,'Kiana','Perempuan','15','Lincah','Kiana ada seorang anak kecil umur 15 tahun yang kehilangan seorang kakak, setiap hari ia mencari kakaknya yang seorang tentara ada di sanctuary tapi Kiana tersesat dan makin menjauh dari keberadaan kakaknya, dari awal dunia zombie ini. Kiana sudah bertahan hidup sampai sekarang dan sedang mencari kakak nya yang ber inisial R')">
+
+<img src="https://i.imgur.com/4dhnd6t.png"
+onclick="showChar(this.src,'Rez','Laki-laki','19','Tentara','Rez adalah tentara dengan usia 19 tahun dia memiliki partner yang bernama Rezzel, sebelum dunia hancur Rez dan Rezzel adalah partner yang hebat tetapi dunia yang mereka anggap aman tidak sepenuhnya aman, dunia pun hancur Rez dan Rezzel  berpisah, tapi naas Rez menemukan Rezzel yang sudah tiada,lalu dia menjumpai Sanctuary dia menjadi tentara palingan muda di Sanctuary')">
+
+<img src="https://i.imgur.com/wpZzx3l.jpeg"
+onclick="showChar(this.src,'Leynn Niffer','Perempuan','23','Militer muda','Leynn Niffer Sejak kecil Leynn selalu bekerja keras untuk menghidupi keluarganya. Ia hanya tinggal bersama ibu yang sedang sakit dan adik kembar yang sangat ia sayangi. Tetapi ibunya tiada karena wabah zombie yang mulai melanda. Leynn dan kembarannya Jeynn menjadi seorang tentara untuk menolong para manusia, tetapi disuatu hari, saat mereka sedang pergi karena misi mencari para survivor yang masih bertahan, Jeynn tergigit oleh zombie di hadapan Leynn karena menolong Leynn yang sedang jatuh. Saat itu, Jeynn langsung menyuruh Leynn untuk menembaknya, dan Leynn terpaksa melakukannya. Itu adalah cerita mengapa Leynn menjadi pemurung, dan Leynn tetap menjadi seorang tentara karena ia ingin melindungi impian adiknya yang sungguh ingin menjadi seorang tentara wanita yang akan melindungi para korban bencana.')">
+
+<img src="https://i.imgur.com/ZflWSqP.png"
+onclick="showChar(this.src,'Doctor Rehan','Laki-laki','22','Doctor','Semua bermula ketika Dr. Rehan ditugaskan di fasilitas medis darurat milik pemerintah. Awalnya dianggap sebagai wabah biasa. Pasien terus berdatangan dengan gejala demam tinggi, kejang, dan kondisi tubuh yang melemah. Kemudian satu pasien… bangkit kembali. Bukan sembuh. Melainkan berubah. Para pasien mulai kehilangan kesadaran. Mereka menyerang siapa pun di sekitar. Gigitan mereka menularkan infeksi dengan cepat. Dalam waktu singkat, fasilitas medis berubah menjadi tempat penuh kekacauan. Dr. Rehan menyaksikan rekan-rekannya satu per satu tumbang. Sebagian meninggal. Sebagian… berubah. Dan tidak ada yang bisa ia lakukan untuk menyelamatkan mereka. Fasilitas itu akhirnya runtuh. Bukan karena kekurangan peralatan, melainkan karena manusia tidak pernah siap menghadapi hal seperti ini.')">
+
+<img src="https://i.imgur.com/nsq8hpo.png"
+onclick="showChar(this.src,'Regis','Laki-Laki','18','Tentara','Backstory seorang tentara yang mengikuti pelatihan di gunung ia tidak tau bawa wabah zombi menyerang akir nya kedua orang tua nya menjadi zombi untuk menebus kesalahannya ia harus menjadi lebih kuat untuk melawan para zombie')">
+
+<img src="https://i.imgur.com/cIfbzPg.png"
+onclick="showChar(this.src,'Dika Sadiwijaya Putra','Laki-laki','9','Survivor','Dika Sadiwijaya Putra Anak kuliahan biasa yang mempunyai nilai rata-rata, dan cita-citanya Kuliah di Harvard, Salah satu Universitas terbaik di dunia, Dika ditinggal ayahnya yang bercerai dengan ibunya saat dia berumur 9 tahun, Saat Dika masih SD, dia gampang di bohongi temannya, jadi, saat dia SMP, dia mulai Trust Issue kepada temannya sendiri, 13 tahun berlalu, Ibu Dika Meninggal pada tahun 2020, Ibu Dika mati Karna Covid, Dia Kuliah di Universitas Orbit Nusantara yang terletak di kotanya')">
+
+<img src="https://i.imgur.com/5gJFtzw.png"
+onclick="showChar(this.src,'Riska Silver','Perempuan','16','Survivor','Riska silver (16) anak kedua dari alex silver, dia adalah penjual barang ilegal dan ibunya adalah seorang guru tapi sayangnya ada sebuah penyakit yang merenggut nyawa sang ibu setelah itu sang ayah yang frustasi dia pun membawa kedua anak nya di panti asuhan lalu kedua anak itu tumbuh tapi kiamat zombie datang dan sang abang terkena gigitan dari zombie untuk menyelamatkan sang adik lalu dia pun dibunuh oleh para tentara dan sang adik bersumpah tidak akan mempercayai para tentara')">
+
+<img src="https://i.imgur.com/bygD0Ou.png"
+onclick="showChar(this.src,'Lutfi','Laki-laki','18','Pemadam','Lutfi Dulu seorang pemadam kebakaran di kota lama. Lutfi pindah ke kota ini karena kota tersebut sudah ditutup dari dunia luar. Dikabarkan terkena wabah penduduk menghilang dan sebagian berubah menjadi makhluk yang tidak normal. Risikonya besar tetapi selama masih ada kemungkinan orang yang hidup di dalamnya Lutfi tetap masuk. Sekarang Lutfi berada di kota itu—gelap hancur dan tidak lagi seperti kota biasa. Dan Lutfi tidak akan keluar sebelum mengetahui apa yang sebenarnya terjadi.')">
+
+<img src="https://i.imgur.com/qoM5zCR.png"
+onclick="showChar(this.src,'Kenjiro','Laki-laki','17','Survivor','Ken tidak pernah ingin menjadi pusat perhatian. Baginya, sekolah hanyalah sebuah tempat untuk dilewati secepat mungkin. Ia tumbuh di keluarga yang sederhana; ayahnya adalah seorang pustakawan yang mewariskan kecintaan pada buku dan ketenangan. Sayangnya, sifat pendiam Ken disalahartikan sebagai kelemahan oleh sekelompok murid yang merasa berkuasa. Semuanya dimulai saat Ken menolak mengerjakan tugas matematika milik pemimpin geng di kelasnya. Penolakan kecil itu menjadi pemicu perundungan yang sistematis.')">
+
+<img src="https://i.imgur.com/pUWi4bp.png"
+onclick="showChar(this.src,'Ish Hayes','Laki-Laki','18','Tentara','Ish Hayes hanyalah seorang remaja yang terlahir dari keluarga yang hancur. Ayahnya adalah seorang pemabuk yang tidak bertanggung jawab terhadap keluarga. Ibunya telah pergi entah ke mana sejak Ish berumur dua tahun. Selama lima tahun, Ish berusaha mencari keberadaan ibunya. Namun, ia akhirnya mengetahui bahwa ibunya telah lama tiada. Sejak saat itu, Ish menjadi anak jalanan yang bertahan hidup dengan caranya sendiri. Ia mengamen di lampu merah, mengumpulkan barang-barang bekas untuk dijual, dan sesekali membantu pedagang kecil demi mendapatkan sedikit uang atau makanan. Ia tidur di emperan toko atau di bawah jembatan, beralaskan kardus tipis dan beratapkan langit malam. Meski hidup keras, Ish tetap berusaha bertahan, menahan lapar, dingin, dan rasa sepi yang terus menghantui.')">
+
+<img src="https://i.imgur.com/w6A8ls0.png"
+onclick="showChar(this.src,'Lanz Corviar','Laki-Laki','17','Lincah','Lanz dulu sangat percaya pada satu orang yang ia anggap segalanya, tapi ditinggalkan tanpa penjelasan hingga membuatnya trauma dan depresi. Dalam satu malam yang penuh tekanan, ia kehilangan kendali. Ia melukai dirinya sendiri hingga satu matanya rusak—sebuah momen yang mengubah hidupnya selamanya. Sejak itu, Lanz jadi dingin, penuh trust issue, dan menutup diri dari dunia. Sampai akhirnya ia bertemu Ken—satu-satunya orang yang tidak memaksanya berubah. Perlahan, Ken jadi alasan kecil bagi Lanz untuk tetap bertahan, meski luka di masa lalunya belum sepenuhnya hilang.')">
+
+<img src="https://i.imgur.com/KmOC6gk.png"
+onclick="showChar(this.src,'Tevad Albin','Laki-Laki','27','Profesor','Tevad Alvin seorang Mantan tentera yang dulu amat taat pada agama dan ingin pertahanin semuanya. hinggalah dia mengikut seorang scientist  yang ingin membuat ramuan yang bisa menaikkan fisik manusia beratus-ratus kali tapi malah berhujung sebaliknya Pada dunia yang hancur sekarang tujuan Tevad sudah berubah sekarang dia ingin menghancurkan semuanya.(SUDAH TIDAK ADA APA APA UNTUK DI PERTAHANIN JADI NGAPAIN MASIH BERTAHAN?)')">
+
+<img src="https://i.imgur.com/wxsbHpI.png"
+onclick="showChar(this.src,'Zenox','Laki-Laki','15','Survivor','Zenox umur 15th tumbuh tanpa ingatan yang jelas tentang masa kecilnya. Satu-satunya hal yang ia pegang adalah sebuah kalung tua dan keyakinan bahwa ia memiliki tujuan yang lebih besar. Sejak kecil, ia belajar bertahan hidup sendiri—mengandalkan insting tajam dan kemampuan mengamati lingkungan sekitar')">
+
+</div>
+</div>
+
+<div class="image-section">
+    <h2 class="opening-text">OPENING</h2>
+    
+
+    <iframe width="100%" height="250"
+    src="https://www.youtube.com/embed/Ah_K1YE5YI0"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
+</div>
+
+<div class="image-section">
+    <h2 class="opening-text">POV PLAYER</h2>
+    <br>
+    <hr>
+    <h2 class="opening-text">POV SKYZEN</h2>
+
+    <iframe class="pov-video"
+    width="100%" height="250"
+    src="https://www.youtube.com/embed/Rb003wzN45w"
+    frameborder="0"
+    allowfullscreen>
+    </iframe>
+    <br>
+    <hr>
+   <h2 class="opening-text">POV EVAN</h2>
+
+<iframe class="pov-video"
+width="100%" height="250"
+src="https://www.youtube.com/embed/oxRi10BDMxE"
+frameborder="0"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="footer">
+© 2026 Project Walker S1
+</d>
+
+<div class="music-bar">
+    <button id="playBtn">▶</button>
+    <div class="music-text">PROJECT WALKER S1.ID</div>
+    <input type="range" id="progress" value="0">
+    <div class="music-icons">☰</div>
+</div>
+
+<div class="footer">        </d>
+
+<script>
+window.onload = function(){
+setTimeout(()=>{document.getElementById("loadingScreen").style.display="none";},2000);
+}
+
+const music = document.getElementById("bgm");
+function toggleMusic(){ music.paused ? music.play() : music.pause(); }
+
+function showChar(img,nama,gender,umur,bio,story){
+document.getElementById("preview").src = img;
+document.getElementById("nama").innerText = nama;
+document.getElementById("gender").innerText = gender;
+document.getElementById("umur").innerText = umur;
+document.getElementById("bio").innerText = bio;
+document.getElementById("story").innerText = story;
+}
+
+function resetChar(){
+document.getElementById("preview").src="https://i.imgur.com/Q3TziFM.jpeg";
+document.getElementById("nama").innerText="???";
+document.getElementById("gender").innerText="???";
+document.getElementById("umur").innerText="???";
+document.getElementById("bio").innerText="Klik karakter di bawah";
+document.getElementById("story").innerText="";
+}
+
+const playBtn = document.getElementById("playBtn");
+const progress = document.getElementById("progress");
+const audioPlayer = document.getElementById("bgm");
+
+playBtn.onclick = () => {
+    if(audioPlayer.paused){
+        audioPlayer.play();
+        playBtn.innerText = "❚❚";
+    } else {
+        audioPlayer.pause();
+        playBtn.innerText = "▶";
+    }
+};
+
+audioPlayer.addEventListener("timeupdate", () => {
+    progress.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+});
+
+progress.addEventListener("input", () => {
+    audioPlayer.currentTime = (progress.value / 100) * audioPlayer.duration;
+});
+</script>
+
+</body>
+</html>
